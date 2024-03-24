@@ -14,7 +14,8 @@ public class MoveController : MonoBehaviour
     public void OnUpdate(float horizontal, float vertical)
     {
         var direction = new Vector3(horizontal, vertical, 0f);
-        transform.position += direction * Time.deltaTime * _speed;
+        var position = transform.position + direction * Time.deltaTime * _speed;
+        transform.position = MapManager.instance.GetPositionInsideMap(position);
         
         if (horizontal != 0f)
         {
